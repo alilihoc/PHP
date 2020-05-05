@@ -1,0 +1,146 @@
+{% if (fromMarque is not defined) %}
+    {{ form_start(form ,{
+        'method' : 'post',
+        'name' : 'produitEdit',
+        'id' : 'produitEdit'
+    }
+    ) }}
+{% endif %}
+<div class="row">
+    <div class="col-md-4  {{ form_errors(form.titre)|length > 4 ? 'has-error' : '' }}">
+        {{ form_label(form.titre, null, {'label_attr': {'class': 'classLabelRequired'}}) }}
+        {# Génération de l'input. #}
+        {{ form_widget(form.titre, {'attr': {
+            'class': 'form-control',
+            'placeholder':'Titre du produit',
+            'pattern':'.{1,100}',
+            'title':'Champ obligatoire',
+            'maxlength':100
+        }}) }}
+    </div>
+
+    <div class="col-md-4  {{ form_errors(form.description)|length > 4 ? 'has-error' : '' }}">
+        {{ form_label(form.description, null, {'label_attr': {'class': 'classLabelRequired'}}) }}
+        {{ form_widget(form.description, {'attr': {
+            'class': 'form-control',
+            'placeholder':'Description du produit',
+            'pattern':'.{1,1000}',
+            'title':'Champ obligatoire',
+            'maxlength':100
+        }}) }}
+    </div>
+
+    <div class="col-md-4  {{ form_errors(form.dateCreated)|length > 4 ? 'has-error' : '' }}">
+        {{ form_label(form.dateCreated, null, {'label_attr': {'class': 'classLabelRequired'}}) }}
+        {{ form_widget(form.dateCreated, {'attr': {
+            'class': '',
+        }}) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4  {{ form_errors(form.prixHT)|length > 4 ? 'has-error' : '' }}">
+        {{ form_label(form.prixHT, null, {'label_attr': {'class': 'classLabelRequired'}}) }}
+        {{ form_widget(form.prixHT, {'attr': {
+            'class': 'form-control',
+            'placeholder':'Prix HT',
+            'title':'Champ obligatoire'
+        }}) }}
+    </div>
+
+    <div class="col-md-4  {{ form_errors(form.prixTTC)|length > 4 ? 'has-error' : '' }}">
+        {{ form_label(form.prixTTC, null, {'label_attr': {'class': 'classLabelRequired'}}) }}
+        {{ form_widget(form.prixTTC, {'attr': {
+            'class': 'form-control',
+            'placeholder':'Prix TTC',
+            'title':'Champ obligatoire'
+        }}) }}
+    </div>
+
+    <div class="col-md-4  {{ form_errors(form.stockQte)|length > 4 ? 'has-error' : '' }}">
+        {{ form_label(form.stockQte, null, {'label_attr': {'class': 'classLabelRequired'}}) }}
+        {{ form_widget(form.stockQte, {'attr': {
+            'class': 'form-control',
+            'placeholder':'Qté en Stock',
+            'title':'Champ obligatoire'
+        }}) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4  {{ form_errors(form.poids)|length > 4 ? 'has-error' : '' }}">
+        {{ form_label(form.poids, null, {'label_attr': {'class': 'classLabelRequired'}}) }}
+        {{ form_widget(form.poids, {'attr': {
+            'class': 'form-control',
+            'placeholder':'poids du produit',
+            'title':'Champ obligatoire'
+        }}) }}
+    </div>
+
+    <div class="col-md-4  {{ form_errors(form.couleur)|length > 4 ? 'has-error' : '' }}">
+        {{ form_label(form.couleur, null, {'label_attr': {'class': 'classLabelRequired'}}) }}
+        {{ form_widget(form.couleur, {'attr': {
+            'class': 'form-control',
+            'placeholder':'couleur du produit',
+            'title':'Champ obligatoire'
+        }}) }}
+    </div>
+
+    <div class="col-md-4  {{ form_errors(form.demo)|length > 4 ? 'has-error' : '' }}">
+        {{ form_label(form.demo, null, {'label_attr': {'class': 'classLabelRequired'}}) }}
+        {{ form_widget(form.demo, {'attr': {
+            'class': 'form-control',
+            'placeholder':'En magasin pour Essai ?',
+            'title':'Champ obligatoire'
+        }}) }}
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-4  {{ form_errors(form.fabAdress)|length > 4 ? 'has-error' : '' }}">
+        {{ form_label(form.fabAdress, null, {'label_attr': {'class': 'classLabelRequired'}}) }}
+        {{ form_widget(form.fabAdress, {'attr': {
+            'class': 'form-control',
+            'placeholder':'Rue du Fabricant',
+            'title':'Champ obligatoire'
+        }}) }}
+    </div>
+
+    <div class="col-md-4  {{ form_errors(form.fabCity)|length > 4 ? 'has-error' : '' }}">
+        {{ form_label(form.fabCity, null, {'label_attr': {'class': 'classLabelRequired'}}) }}
+        {{ form_widget(form.fabCity, {'attr': {
+            'class': 'form-control',
+            'placeholder':'Ville du Fabricant',
+            'title':'Champ obligatoire'
+        }}) }}
+    </div>
+
+    <div class="col-md-4  {{ form_errors(form.fabPostCode)|length > 4 ? 'has-error' : '' }}">
+        {{ form_label(form.fabPostCode, null, {'label_attr': {'class': 'classLabelRequired'}}) }}
+        {{ form_widget(form.fabPostCode, {'attr': {
+            'class': 'form-control',
+            'placeholder':'Code Postal du Fabricant',
+            'title':'Champ obligatoire'
+        }}) }}
+    </div>
+</div>
+
+{% if (fromMarque is not defined) %}
+<div class="row">
+    <div class="col-md-4  {{ form_errors(form.marque)|length > 4 ? 'has-error' : '' }}">
+        {{ form_label(form.marque, null, {'label_attr': {'class': 'classLabelRequired'}}) }}
+        {{ form_widget(form.marque, {'attr': {
+            'class': 'form-control'
+        }}) }}
+        {{ form_errors(form.marque) }}
+    </div>
+</div>
+
+<button class="btn btn-primary mt-4">Valider</button>
+{{ form_end(form) }}
+{% else %}
+    {% do form.marque.setRendered %}
+{% endif %}
+
+

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="bk0LHGc" resname="Creation date">
+        <source>Creation date</source>
+        <target>Date de création</target>
+      </trans-unit>
+      <trans-unit id="Um4Ah8w" resname="Description">
+        <source>Description</source>
+        <target>Déscription</target>
+      </trans-unit>
+      <trans-unit id="OXqR60X" resname="Price HT">
+        <source>Price HT</source>
+        <target>Prix HT</target>
+      </trans-unit>
+      <trans-unit id="bBGnDOJ" resname="Stock quantity">
+        <source>Stock quantity</source>
+        <target>Stock quantité</target>
+      </trans-unit>
+      <trans-unit id="IDWPlJE" resname="Price TTC">
+        <source>Price TTC</source>
+        <target>Prix TTC</target>
+      </trans-unit>
+      <trans-unit id="XYKcjAh" resname="Production city">
+        <source>Production city</source>
+        <target>Ville de fabrication</target>
+      </trans-unit>
+      <trans-unit id="mkPDXAO" resname="Production adress">
+        <source>Production adress</source>
+        <target>Adresse de fabrication</target>
+      </trans-unit>
+      <trans-unit id="TneoqpX" resname="Production postal code">
+        <source>Production postal code</source>
+        <target>CP de fabrication</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

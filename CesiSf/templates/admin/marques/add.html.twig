@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+{% block title 'Ajouter un produit' %}
+{% block body %}
+    <div class="container mt-4">
+        <h1>Ajouter une marque</h1>
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+
+        <div class="{{ form_errors(form.nom)|length > 4 ? 'has-error' : '' }}">
+            {{ form_label(form.nom, null, {'label_attr': {'class': 'classLabelRequired'}}) }}
+            {# Génération de l'input. #}
+            {{ form_widget(form.nom, {'attr': {
+                'class': 'form-control',
+                'placeholder':'Nom de la marque',
+                'pattern':'.{1,100}',
+                'title':'Champ obligatoire',
+                'maxlength':100
+            }}) }}
+
+            <h3>Produits</h3>
+            <div id="collectionContainer"
+                 data-prototype="{{ include('admin/produit/_form.html.twig', { 'form': form.produits.vars.prototype, 'fromMarque': '1' })|e('html_attr') }}">
+            </div>
+
+            {# Bouton d'ajout #}
+            <div class="row">
+                <div class="btn-group">
+                    <button class="btn btn-success" type="button" id="addProduit"><em class="fa fa-plus"></em> Ajouter un Produit</button>
+                </div>
+            </div>
+            <button class="btn btn-primary mt-4">Valider</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {# Script qui ajoute un formulaire automatiquement #}
+    <script>
+        $(function() {
+            var index = 0;
+            var prototype = $('#collectionContainer').data('prototype'); // On récupère le prototype (composition du formulaire)
+            $("#addProduit").on('click', function(e){
+                var newForm = prototype.replace(/__name__/g, index++) // On remplace par l'index + 1 chaque ID de champ
+                    .replace('Titre', 'Titre n°' + (index)); // Incrémentation de la légende du formulaire ajouté
+                var divRow = $('<div class="row"></div>');
+                var divRemove = $('<div class="col-12 mt-4 mb-4 pb-4 border-bottom"></div>'); // Div qui va contenir le bouton de suppression de formulaire
+                var btnRemove = $('<button class="btn btn-danger float-right"><span class="glyphicon glyphicon-minus"></span> Supprimer N° '+index+'</button>'); // Bouyon de suppression de formulaire
+                divRow.append(divRemove); // Intégration du bouton dans le div
+                divRemove.append(btnRemove); // Intégration du bouton dans le div
+                var newDiv=$('<div></div>'); // Calque qui va contenir le formulaire en totalité
+                newDiv.append(newForm); // Intégration du formulaire dans le calque général
+                newDiv.append(divRow); // Intégration du bouton de suppression dans le calque général
+                $(newDiv).appendTo('#collectionContainer').hide().slideDown("slow"); // Insertion du formulaire
+                e.preventDefault(); // ne pas afficher "#" dans l'URL
+
+                btnRemove.click(function(e) {
+                    $(this).parent().parent().parent().slideUp(1000).html(""); // Suppression du div parent parent
+                    e.preventDefault(); // ne pas afficher "#" dans l'URL
+                });
+            });
+
+            $('#marque_produits').parent().remove();
+        });
+
+    </script>
+{% endblock %}

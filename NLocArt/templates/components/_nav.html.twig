@@ -1,0 +1,53 @@
+<!-- MENU -->
+<nav class="navbar navbar-default navbar-fixed-top">
+
+    <div class="container" id="menu">
+
+        <div class="row">
+
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand" href="/" id="logo_ecloz"><img src="{{ asset('img/oeuvres/logo-ecloz.png') }}"></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul id="main_menu" class="nav navbar-nav">
+                    <li><a href="/#artiste" id="lienArtiste">L'artiste</a></li>
+                    <li><a href="{{ url('index_catalogue') }}" {% if active_link == 'catalogue' %} {{ "class=\"active_link\"" }} {% endif %}>Le Catalogue</a></li>
+                    <li><a href="/#contact" id="lienContact">Contact</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    {%  if (app.user is not null and (app.user.roles[0] == 'ROLE_LOUEUR'))  %}
+                        <li><a {% if active_link == 'administration' %} {{ "class=\"active_link\"" }} {% endif %} href="{{ url('admin_index') }}">Administration</a></li>
+                    {% endif %}
+
+                    {%  if (app.user is not null and (app.user.roles[0] == 'ROLE_MEMBRE'))  %}
+                        <li><a href="{{ url('security_account') }}" {% if active_link == 'monCompteUser' %} {{ "class=\"active_link\"" }} {% endif %}>Mon  Compte</a></li>
+                        <li><a href="{{ url('order_selection') }}" {% if active_link == 'panier' %} {{ "class=\"active_link\"" }} {% endif %}>Ma  Sélection</a></li>
+                    {% endif %}
+
+                    {%  if is_granted('IS_AUTHENTICATED_FULLY')%}
+                        <li><a href="{{ url('deconnexion') }}">Déconnexion</a></li>
+                    {% else %}
+                        <li><a href="{{ url('security_connexion') }}" {% if active_link == 'login' %} {{ "class=\"active_link\"" }} {% endif %}>Se  Connecter</a></li>
+                        <li><a href="{{ url('security_inscription') }}" {% if active_link == 'inscription' %} {{ "class=\"active_link\"" }} {% endif %}>Inscription</a>
+                    {% endif %}
+                </ul>
+            </div><!-- /.navbar-collapse -->
+
+        </div> <!-- /.row -->
+
+    </div><!-- /#menu -->
+
+</nav>
+<!-- FIN MENU -->
+

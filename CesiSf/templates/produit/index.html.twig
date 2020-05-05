@@ -1,0 +1,22 @@
+{% extends'produit/_section.html.twig' %}
+{% block home_body %}
+    <div class="container">
+        <h2 class="row flex"> Nos produits en stock</h2>
+        <div class="row flex">
+            {% for produit in produits %}
+                <div class="col-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{{ path('produit.detail',{slug: produit.slug}) }}">{{ produit.Titre }}</a>
+                            </h5>
+                            <p class="card-text">{{ produit.Description }}</p>
+                            <p class="card-text" style="font-weight: bold;">{{ produit.FabCity }} ({{ produit.FabPostCode }})</p>
+                            <div class="text-primary" style="font-weight: bold;font-size: 2rem">{{ produit.PrixTTC | number_format(0,'',' ')}}€ TTC</div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
